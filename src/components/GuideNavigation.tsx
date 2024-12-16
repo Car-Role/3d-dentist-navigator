@@ -51,29 +51,30 @@ const GuideNavigation = ({ collapsed, onToggle }: GuideNavigationProps) => {
   return (
     <nav
       className={cn(
-        "fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white border-r border-gray-200 transition-all duration-300 overflow-y-auto",
-        collapsed ? "w-16" : "w-64"
+        "fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white/95 backdrop-blur-sm border-r border-gray-100 transition-all duration-300 ease-in-out overflow-y-auto shadow-sm",
+        collapsed ? "w-16 transform translate-x-0" : "w-64 transform translate-x-0"
       )}
     >
-      <div className="flex justify-end p-2">
+      <div className="sticky top-0 flex justify-end p-2 bg-white/80 backdrop-blur-sm z-10">
         <button
           onClick={onToggle}
-          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+          className="p-2 hover:bg-blue-50 rounded-full transition-colors"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           {collapsed ? (
-            <ChevronRight className="h-4 w-4 text-gray-500" />
+            <ChevronRight className="h-4 w-4 text-primary" />
           ) : (
-            <ChevronLeft className="h-4 w-4 text-gray-500" />
+            <ChevronLeft className="h-4 w-4 text-primary" />
           )}
         </button>
       </div>
       <div className="px-4 py-2">
         {sections.map((section) => (
-          <div key={section.id} className="mb-4">
+          <div key={section.id} className="mb-6">
             <button
               onClick={() => scrollToSection(section.id)}
               className={cn(
-                "text-left font-medium text-primary hover:text-primary-dark transition-colors",
+                "text-left font-medium text-gray-900 hover:text-primary transition-colors",
                 collapsed ? "w-8 overflow-hidden" : "w-full"
               )}
             >
@@ -85,7 +86,7 @@ const GuideNavigation = ({ collapsed, onToggle }: GuideNavigationProps) => {
                   <li key={subsection.id}>
                     <button
                       onClick={() => scrollToSection(subsection.id)}
-                      className="text-sm text-secondary-dark hover:text-primary transition-colors"
+                      className="text-sm text-gray-600 hover:text-primary transition-colors w-full text-left py-1"
                     >
                       {subsection.title}
                     </button>
