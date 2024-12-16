@@ -1,26 +1,35 @@
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import RootLayout from './layouts/RootLayout';
-import GuideLayout from './layouts/GuideLayout';
-import HomePage from './pages/HomePage';
-import Contact from './pages/Contact';
-import Resources from './pages/Resources';
-import SignUp from './pages/SignUp';
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Index from "./pages/Index";
+import Resources from "./pages/Resources";
+import GuideLayout from "./layouts/GuideLayout";
+import RootLayout from "./layouts/RootLayout";
+import Contact from "./pages/Contact";
+import SignUp from "./pages/SignUp";
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<RootLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="guide/*" element={<GuideLayout />} />
-          <Route path="resources" element={<Resources />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
-}
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/guide/:guideId" element={<GuideLayout />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
