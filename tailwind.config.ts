@@ -34,6 +34,7 @@ export default {
           light: "#94A3B8",
           dark: "#475569",
         },
+        'nav-active': '#2563eb',
       },
       typography: {
         DEFAULT: {
@@ -52,6 +53,9 @@ export default {
           },
         },
       },
+      backgroundColor: {
+        'nav-active': '#2563eb',
+      }
     },
   },
   plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
