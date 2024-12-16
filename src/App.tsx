@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import GuideLayout from './layouts/GuideLayout';
 import HomePage from './pages/HomePage';
@@ -8,7 +8,7 @@ import SignUp from './pages/SignUp';
 
 function App() {
   return (
-    <Router basename="/3d-dentist-navigator">
+    <Router>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
