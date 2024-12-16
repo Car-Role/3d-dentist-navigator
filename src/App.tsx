@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Resources from "./pages/Resources";
 import GuideLayout from "./layouts/GuideLayout";
@@ -17,19 +17,17 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<RootLayout />}>
-            <Route path="/" element={<Index />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/guide/:guideId" element={<GuideLayout />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Index />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/guide/:guideId" element={<GuideLayout />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
+      </Routes>
     </TooltipProvider>
   </QueryClientProvider>
-);
+)
 
 export default App;
