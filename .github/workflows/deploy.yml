@@ -23,7 +23,9 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: |
+          npm install
+          npm install -D @vitejs/plugin-react @types/node
 
       - name: Build
         run: npm run build
