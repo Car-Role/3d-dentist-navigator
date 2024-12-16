@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GuideNavigation from '../components/GuideNavigation';
 import GuideContent from '../components/GuideContent';
+import AIChatFAB from '../components/AIChatFAB';
 
 const GuideLayout = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -34,6 +35,7 @@ const GuideLayout = () => {
           <GuideContent />
         </div>
       </main>
+      <AIChatFAB />
     </div>
   );
 };
