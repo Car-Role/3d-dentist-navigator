@@ -8,7 +8,7 @@ const TopNav = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-primary/80 to-primary-light/80 bg-clip-text text-transparent">
                 Dental 3D Printing Guide
               </h1>
             </div>
