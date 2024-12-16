@@ -20,12 +20,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
 
-      - name: Install Dependencies
+      # Clean install dependencies
+      - name: Clean Install Dependencies
         run: |
+          rm -rf node_modules
+          rm -f package-lock.json
           npm install
-          npm install -D @vitejs/plugin-react @types/node
+          npm install --save-dev @vitejs/plugin-react @types/node vite @types/react @types/react-dom
 
       - name: Build
         run: npm run build
