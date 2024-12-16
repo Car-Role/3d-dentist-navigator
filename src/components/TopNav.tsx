@@ -11,7 +11,7 @@ const TopNav = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary/60 to-primary-light/60 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-primary">
                 Dental 3D Printing Guide
               </h1>
             </Link>
@@ -37,12 +37,26 @@ const TopNav = () => {
             >
               Resources
             </Link>
-            <a href="#" className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
-              Community
-            </a>
-            <a href="#" className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+            <Link 
+              to="/guide/getting-started" 
+              className={`${
+                location.pathname.startsWith('/guide') 
+                  ? 'text-primary' 
+                  : 'text-gray-600 hover:text-primary'
+              } px-3 py-2 text-sm font-medium transition-colors`}
+            >
+              Guide
+            </Link>
+            <Link 
+              to="/contact" 
+              className={`${
+                location.pathname === '/contact' 
+                  ? 'text-primary' 
+                  : 'text-gray-600 hover:text-primary'
+              } px-3 py-2 text-sm font-medium transition-colors`}
+            >
               Contact
-            </a>
+            </Link>
           </div>
           <div className="flex items-center sm:hidden">
             <button className="text-gray-500 hover:text-primary transition-colors">
