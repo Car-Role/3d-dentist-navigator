@@ -28,6 +28,7 @@ const sections: Section[] = [
     title: 'Basic Techniques',
     subsections: [
       { id: 'file-preparation', title: 'File Preparation' },
+      { id: 'scanner-selection', title: 'Scanner Selection' },
       { id: 'printer-setup', title: 'Printer Setup' },
     ],
   },

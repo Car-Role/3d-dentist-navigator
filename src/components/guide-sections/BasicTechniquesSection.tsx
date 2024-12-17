@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoEmbed from '../VideoEmbed';
+import ScannerSelector from '../ScannerSelector';
 
 const BasicTechniquesSection = () => {
   return (
@@ -22,6 +23,10 @@ const BasicTechniquesSection = () => {
             title="File Preparation for Dental 3D Printing"
           />
         </div>
+      </div>
+
+      <div id="scanner-selection" className="mb-8">
+        <ScannerSelector />
       </div>
 
       <div id="printer-setup" className="mb-8">
