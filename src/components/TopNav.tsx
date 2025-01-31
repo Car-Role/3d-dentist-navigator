@@ -32,7 +32,7 @@ const TopNav = () => {
             <Link 
               to="/guide/getting-started" 
               className={`${
-                location.pathname.startsWith('/guide') 
+                location.pathname.startsWith('/guide/') 
                   ? 'text-primary border-b-2 border-primary' 
                   : 'text-gray-600 hover:text-primary'
               } px-3 py-2 text-sm font-medium transition-colors`}
@@ -40,14 +40,14 @@ const TopNav = () => {
               Guide
             </Link>
             <Link 
-              to="/resources" 
+              to="/guides" 
               className={`${
-                location.pathname === '/resources' 
+                location.pathname === '/guides' 
                   ? 'text-primary border-b-2 border-primary' 
                   : 'text-gray-600 hover:text-primary'
               } px-3 py-2 text-sm font-medium transition-colors`}
             >
-              Resources
+              Guide Directory
             </Link>
             <Link 
               to="/contact" 
@@ -101,7 +101,7 @@ const TopNav = () => {
           <Link 
             to="/guide/getting-started" 
             className={`${
-              location.pathname.startsWith('/guide') 
+              location.pathname.startsWith('/guide/') 
                 ? 'bg-primary/5 text-primary' 
                 : 'text-gray-600 hover:bg-gray-50'
             } block px-3 py-2 rounded-md text-base font-medium transition-colors`}
@@ -110,15 +110,15 @@ const TopNav = () => {
             Guide
           </Link>
           <Link 
-            to="/resources" 
+            to="/guides" 
             className={`${
-              location.pathname === '/resources' 
+              location.pathname === '/guides' 
                 ? 'bg-primary/5 text-primary' 
                 : 'text-gray-600 hover:bg-gray-50'
             } block px-3 py-2 rounded-md text-base font-medium transition-colors`}
             onClick={() => setIsMenuOpen(false)}
           >
-            Resources
+            Guide Directory
           </Link>
           <Link 
             to="/contact" 
