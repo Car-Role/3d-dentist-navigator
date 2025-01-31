@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && type nul > dist/.nojekyll",
+    "build": "vite build && touch dist/.nojekyll || (mkdir dist 2>nul || cd .) && type nul > dist/.nojekyll",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
