@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { BookOpen, Video, Beaker, Users, Wrench, Printer, ArrowRight, Stethoscope } from 'lucide-react';
+import { BookOpen, Video, Beaker, Users, Wrench, Printer, ArrowRight, Stethoscope, Search } from 'lucide-react';
 import AIChatFAB from '../components/AIChatFAB';
+import { Input } from "@/components/ui/input";
 
 const resourceCategories = [
   {
@@ -97,18 +98,51 @@ const resourceCategories = [
 ];
 
 const GuideDirectory = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Filter categories based on search term
+  const filteredCategories = resourceCategories.filter(category => {
+    const searchString = `${category.title} ${category.description} ${
+      category.links.map(link => `${link.title} ${
+        link.sublinks?.map(sublink => sublink.title).join(' ') || ''
+      }`).join(' ')
+    }`.toLowerCase();
+    
+    return searchString.includes(searchTerm.toLowerCase());
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Guide Directory</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
             Access comprehensive guides and documentation for all your dental practice needs.
           </p>
+          <div className="relative max-w-2xl mx-auto">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-primary/5 rounded-lg blur-xl group-hover:bg-primary/10 transition-all duration-300"></div>
+              <div className="relative bg-white/80 backdrop-blur-sm shadow-sm rounded-lg border border-gray-200/50 hover:border-primary/20 transition-all duration-300">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-hover:text-primary/70 transition-colors duration-300" />
+                <Input
+                  type="text"
+                  placeholder="Search guides..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="border-0 bg-transparent pl-12 pr-4 py-6 text-lg placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary/30 rounded-lg"
+                />
+              </div>
+            </div>
+            {searchTerm && (
+              <p className="text-sm text-gray-500 mt-2 text-center">
+                Showing {filteredCategories.length} {filteredCategories.length === 1 ? 'result' : 'results'}
+              </p>
+            )}
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {resourceCategories.map((category) => (
+          {filteredCategories.map((category) => (
             <Card key={category.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
               <div className="relative h-48 overflow-hidden">
                 <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/5 transition-colors duration-300" />
