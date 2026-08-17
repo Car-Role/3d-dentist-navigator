@@ -1,0 +1,61 @@
+version: 2
+# Security-focused dependency updates.
+# Dependabot security updates (auto-PRs for known vulnerabilities) are enabled
+# at the repo level under Settings > Code security and analysis.
+# This config controls version-update PRs, limiting them to patch + minor bumps
+# (where security fixes almost always land) and grouping them to reduce noise.
+# Major version bumps are intentionally excluded to avoid breaking changes;
+# review those manually when a new CVE requires a major upgrade.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+      time: "06:00"
+      timezone: America/New_York
+    open-pull-requests-limit: 5
+    allow:
+      # Only patch and minor updates. Excludes major version bumps.
+      - dependency-type: direct
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+      - dependency-type: indirect
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+    groups:
+      # Bundle all minor + patch updates into a single PR to reduce noise.
+      security-patches:
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+    commit-message:
+      prefix: "deps"
+      include: scope
+    labels:
+      - dependencies
+      - security
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    allow:
+      - dependency-type: direct
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+    groups:
+      actions-patches:
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+    commit-message:
+      prefix: "ci"
+      include: scope
+    labels:
+      - dependencies
+      - github-actions
